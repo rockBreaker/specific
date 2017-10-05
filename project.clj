@@ -4,7 +4,7 @@
   :profiles {:dev 
              {:plugins [[com.jakemccrary/lein-test-refresh "0.18.0"]]
               :dependencies [[org.clojure/clojure "1.8.0"]
-                             [clojure-future-spec "1.9.0-alpha13"]
+                             [clojure-future-spec "1.9.0-alpha17"]
                              [pjstadig/humane-test-output "0.8.1"]
                              [org.mockito/mockito-core "1.9.5"]
                              [cljito "0.2.1"]]

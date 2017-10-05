@@ -38,15 +38,15 @@ To show you how to use _Specific_, let's assume you have three interdependent fu
 _Specific_ works best with functions that have clojure.spec [definitions](http://clojure.org/guides/spec#_spec_ing_functions). You can include these definitions with the code under test, or you can add them in the tests themselves, or both.
 
 ```clojure
-(clojure.spec/def ::exit (clojure.spec/and integer? #(>= % 0) #(< % 256)))
-(clojure.spec/def ::out string?)
-(clojure.spec/def ::fun-greeting string?)
-(clojure.spec/fdef greet :ret ::fun-greeting)
-(clojure.spec/fdef cowsay
-                   :args (clojure.spec/cat :fun-greeting ::fun-greeting)
-                   :ret (clojure.spec/keys :req-un [::out ::exit]))
-(clojure.spec/fdef some-fun
-                   :args (clojure.spec/+ string?)
+(clojure.spec.alpha/def ::exit (clojure.spec.alpha/and integer? #(>= % 0) #(< % 256)))
+(clojure.spec.alpha/def ::out string?)
+(clojure.spec.alpha/def ::fun-greeting string?)
+(clojure.spec.alpha/fdef greet :ret ::fun-greeting)
+(clojure.spec.alpha/fdef cowsay
+                   :args (clojure.spec.alpha/cat :fun-greeting ::fun-greeting)
+                   :ret (clojure.spec.alpha/keys :req-un [::out ::exit]))
+(clojure.spec.alpha/fdef some-fun
+                   :args (clojure.spec.alpha/+ string?)
                    :ret string?)
 ```
 
@@ -179,7 +179,7 @@ Sometimes, within the scope of a test (or a group of tests) it makes sense to ov
 
     (testing "can use another spec's generator"
       (with-gens [::sample/out ::sample/fun-greeting]
-        (is (string? (sample/some-fun "hello"))))))))
+        (is (string? (sample/some-fun "hello")))))))
 ```
 
 Since with-gens redefines the generator for a spec, and not an entire function, you can use it to specify a portion of an otherwise default generated return value (a single nested `:phone-number` value in an entity map, for example).

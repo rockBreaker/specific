@@ -1,5 +1,5 @@
 (ns specific.test-double-spec
-  (:require [clojure.spec :as spec]
+  (:require [clojure.spec.alpha :as spec]
             [specific
              [matchers :as matchers]
              [sample :as sample]])
@@ -49,13 +49,6 @@
 
       (testing "returns a value that matches the spec"
         (is (string? (mock ""))))
-
-      (testing "returns a test report if the function spec is missing a return value"
-        (is (= {:type :fail
-                :message "No :ret spec defined" 
-                :expected "clojure.spec at [:ret] for #'specific.test-double-spec/no-ret" 
-                :actual nil} 
-               (mock-fn #'no-ret))))
 
       (testing "returns a test report if the function is missing a spec"
         (is (= {:type :fail 

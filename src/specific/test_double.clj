@@ -2,8 +2,8 @@
   (:require [specific.gene :as gene]
             [clojure.string :as string]
             [clojure.test :as ctest]
-            [clojure.spec.test :as stest]
-            [clojure.spec :as spec]))
+            [clojure.spec.test.alpha :as stest]
+            [clojure.spec.alpha :as spec]))
 
 (defn- report-fail [m]
   (ctest/do-report (assoc m :type :fail)))
